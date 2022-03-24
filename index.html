@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+</head>
+<body>
+
+  <div class="container">
+    <div id="first-view">
+      <section class="header">
+        <span>
+          <img src="./images/icon-star.svg" alt="star">
+        </span>
+      </section>
+      <section class="content">
+        <h1>How did we do?</h1>
+        <span class="text">Please let us know how we did with your support request. All ffedback is appreciated to help us improve our offering!</span>
+      </section>
+      <section class="actions">
+        <div>
+          <span onclick="select(1)" id="op1" class="unselect">1</span>
+          <span onclick="select(2)" id="op2" class="unselect">2</span>
+          <span onclick="select(3)" id="op3" class="unselect">3</span>
+          <span onclick="select(4)" id="op4" class="unselect">4</span>
+          <span onclick="select(5)" id="op5" class="unselect">5</span>
+        </div>
+        <button onclick="done()">SUBMIT</button>
+      </section>
+    </div>
+    <div id="second-view">
+      <img src="./images/illustration-thank-you.svg" alt="thank-you">
+      <div id="result"></div>
+      <h1>Thank you!</h1>
+      <span class="text">We appreciate you taking the time to give a rating. If you ever need more support, don't hesitate to get in touch!</span>
+    </div>
+  </div>
+
+</body>
+</html>
+<script>
+
+  var selected = 0;
+  
+  function select(select){
+    
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById('op'+i).classList.add('unselect');
+    }
+
+    var e = document.getElementById('op'+select);
+
+    e.classList.remove('unselect');
+    e.classList.add('select');
+
+    selected = select;
+
+  }
+
+  function done(){
+    if(selected === 0){
+      alert('please select a number to continue');
+    }else{
+      document.getElementById('first-view').style.display = 'none';
+      document.getElementById('second-view').style.display = 'block';
+      document.getElementById('result').innerHTML = 'You selected ' + selected + ' out of 5';
+    }
+    
+  }
+</script>
